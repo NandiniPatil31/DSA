@@ -1,3 +1,4 @@
+//Part 1
 import java.io.*;
 import java.util.*;
  
@@ -21,5 +22,77 @@ class Main {
         Pair minmax = getMinMax(arr, arr_size);
         System.out.println("Minimum element is " + minmax.min);
         System.out.println("Maximum element is " + minmax.max);
+    }
+}
+
+
+//Part 2
+/*package whatever //do not write package name here */
+
+import java.io.*;
+import java.util.*;
+
+class Pair{
+    public int min;
+    public int max;
+}
+
+class GFG {
+    
+    static Pair getMinMax(int []arr, int start, int end){
+        Pair minmax = new Pair();
+        Pair mml = new Pair();
+        Pair mmr = new Pair();
+
+    //if you have only one element, then min and max will be same
+        if(start == end){
+            minmax.min = minmax.max = arr[start];
+            return minmax;
+        }
+
+    //If you have two elements then only one comparison is required
+        if(end == start + 1){
+            if(arr[start] > arr[end]){
+                minmax.min = arr[end];
+                minmax.max = arr[start];
+            }else{
+                minmax.min = arr[start];
+                minmax.max = arr[end];
+            }
+        }
+
+    //When you have more than 2 elements, then find the mid and split the array in two part(divide and merge technique)
+        int mid = (start + end)/2;
+
+    //to get the min and max element from the left part of array after dividing
+        mml = getMinMax(arr, start, mid);
+
+    //to get the min and max element from the right part of the array after dividing
+        mmr = getMinMax(arr, mid + 1, end);
+
+    //now we have two minimum and maximum , one in left and one in right , now it requires only one comparison each
+        if(mml.min < mmr.min)
+            minmax.min = mml.min;
+        else
+            minmax.min = mmr.min;
+            
+        if(mml.max > mmr.max)
+            minmax.max = mml.max;
+        else
+            minmax.max = mmr.max;
+        
+        return minmax;
+        
+    }
+
+	public static void main(String args[])
+    {
+        int arr[] = { 1000, 11, 445, 1, 330, 3000 };
+        int arr_size = 6;
+        Pair minmax = getMinMax(arr, 0, arr_size - 1);
+        System.out.printf("\nMinimum element is %d",
+                          minmax.min);
+        System.out.printf("\nMaximum element is %d",
+                          minmax.max);
     }
 }
