@@ -1,3 +1,33 @@
+////////////////////////////////////       INTERSECTION         ///////////////////////////////////////
+
+static void printIntersection(int arr1[], int arr2[],
+                                  int m, int n)
+    {
+        int i = 0, j = 0;
+        while (i < m && j < n) {
+            if (i > 0
+                && arr1[i] == arr1[i - 1]) {// For Handling duplicates
+                i++;
+                continue;
+            }
+            if (arr1[i] < arr2[j])
+                i++;
+            else if (arr2[j] < arr1[i])
+                j++;
+            else {
+                System.out.print(arr2[j++] + " ");
+                i++;
+            }
+        }
+    }
+
+
+
+
+
+
+//////////////////////////////////////////         UNION            ////////////////////////////////////////////////////////////////////
+
 public class GFG {
 	
 	public static int nextDistinct(int[] arr, int x) {
