@@ -1,0 +1,26 @@
+
+
+
+//Solution 2
+
+
+class Solution {
+    int getPairsCount(int[] arr, int n, int k) {
+        // code here
+        int left = 0, count = 0;
+        int right  = n-1;
+        
+        Arrays.sort(arr);
+        
+        while(left <= right){
+            if(arr[left] + arr[right] == k)
+                count++;
+            else if(arr[left] + arr[right] > k)
+                right--;
+            else
+                left++;
+        }
+        return count;
+    }
+}
+
