@@ -1,3 +1,21 @@
+//Solution 2 **D.P**
+class Solution {
+    public int maxProfit(int[] prices) {
+        int maxCur = 0;
+        int maxSofar = 0;
+
+        for(int i=1; i < prices.length; i++){
+            maxCur = Math.max(0, maxCur += prices[i] - prices[i-1]);
+            maxSofar = Math.max(maxCur, maxSofar);
+        }
+        return maxSofar;
+    }
+}
+
+
+
+
+//Solution 1 
 class Solution {
     public int maxProfit(int[] prices) {
         int buy = prices[0];
