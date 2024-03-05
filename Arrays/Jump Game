@@ -1,4 +1,5 @@
-//
+//Solution 1
+
 class Solution {
     public int jump(int[] nums) {
         int jumps = 0, curEnd =0, curFar = 0;
@@ -14,4 +15,34 @@ class Solution {
     }
 }
 
-//
+//Solution 2
+class Solution {
+    public int jump(int[] nums) {
+        if(nums == null || nums.length < 2)
+            return 0;
+        
+        int l = 0; 
+        int r = nums[0];
+
+        int diff = 1;
+
+        while(l <= r){
+            if(r >= nums.length - 1)
+                return diff;
+            
+            int max = Integer.MIN_VALUE;
+            for(; l <= r; l++)
+                max = Math.max(max, l + nums[l]);
+
+            if(max > r){
+                l = r;
+                r = max;
+                diff++;
+            }
+        }
+        return -1;
+    }
+}
+
+
+
