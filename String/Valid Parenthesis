@@ -1,0 +1,34 @@
+//
+class Solution {
+    static boolean isMatchingPair(char character1, char character2) 
+    { 
+       if (character1 == '(' && character2 == ')') 
+         return true; 
+       else if (character1 == '{' && character2 == '}') 
+         return true; 
+       else if (character1 == '[' && character2 == ']') 
+         return true; 
+       else
+         return false; 
+    } 
+    
+    public boolean isValid(String s) {
+        Stack<Character>st = new Stack<Character>();
+        char[] ch = s.toCharArray();
+        for(int i=0; i<s.length(); i++){
+            if(ch[i]=='(' || ch[i]=='[' || ch[i] == '{')
+                st.push(ch[i]);
+            
+            if(ch[i] == ')' || ch[i]==']' || ch[i] == '}'){
+                if(st.isEmpty())
+                    return false;
+                else if(!isMatchingPair(st.pop(), ch[i]))
+                    return false;
+            }
+        }
+        if(st.isEmpty())
+            return true;
+        else
+            return false;
+    }
+}
