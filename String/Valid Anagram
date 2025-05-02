@@ -34,3 +34,25 @@ class Solution {
         return true;
     }
 }
+
+---------------------------------------------
+
+//sol 3:
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        int[] arr = new int[26];
+
+        for(char i : s.toCharArray()){
+            arr[i - 'a']++;
+        }
+
+        for(char j : t.toCharArray()){
+            arr[j - 'a']--;
+        }
+        for(int val : arr){
+            if(val != 0)
+                return false;
+        }
+        return true;
+    }
+}
