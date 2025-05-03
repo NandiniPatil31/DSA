@@ -1,0 +1,24 @@
+//Input: strs = ["eat","tea","tan","ate","nat","bat"]
+//Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+
+//Sol 1:
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        
+        Map<String, List<String>> map = new HashMap<>();
+
+        for(String i : strs){
+            char[] chars = i.toCharArray();
+            Arrays.sort(chars);
+            String sortedArr = new String(chars);
+
+            if(!map.containsKey(sortedArr)){
+                map.put(sortedArr, new ArrayList<>());
+            }
+            map.get(sortedArr).add(i);
+        }
+        return new ArrayList<>(map.values());
+
+    }
+}
