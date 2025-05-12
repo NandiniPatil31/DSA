@@ -1,0 +1,27 @@
+// Input: height = [1,8,6,2,5,4,8,3,7]
+//Output: 49
+//Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
+
+//Sol 1:
+
+class Solution {
+    public int maxArea(int[] height) {
+        int left = 0; 
+        int right = height.length - 1;
+        int cur_area = 0;
+        int max_area = Integer.MIN_VALUE;
+
+        while(left < right){
+            if(height[left] < height[right]){
+                cur_area = (right - left) * height[left];
+                left++;
+            }
+            else{
+                cur_area = (right - left) * height[right];
+                right--;
+            }
+            max_area = Math.max(cur_area, max_area);
+        }
+        return max_area;
+    }
+}
